@@ -1,36 +1,32 @@
 /* eslint-disable */
 
 module.exports = {
-  entry: "./src/index.tsx",
+  //mode: "production",
+  mode: "development",
+  devtool: "inline-source-map",
+
+  entry: ["./src/index.tsx" /*main*/],
   output: {
-    filename: "bundle.js",
-    path: __dirname + "/dist",
+    filename: "./bundle.js", // in /dist
   },
-
-  // Enable sourcemaps for debugging webpack's output.
-  devtool: "source-map",
-
   resolve: {
-    // Add '.ts' and '.tsx' as resolvable extensions.
-    extensions: [".ts", ".tsx", ".js", ".json"],
+    // Add `.ts` and `.tsx` as a resolvable extension.
+    extensions: [".ts", ".tsx", ".js", ".css", ".scss"],
   },
-
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
-      { test: /\.tsx?$/, loader: "awesome-typescript-loader" },
+      { test: /\.tsx?$/, loader: "ts-loader" },
 
-      // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
-      { enforce: "pre", test: /\.js$/, loader: "source-map-loader" },
+      {
+        test: /\.scss$/,
+        use: [
+          { loader: "style-loader" }, // to inject the result into the DOM as a style block
+          { loader: "css-modules-typescript-loader" }, // to generate a .d.ts module next to the .scss file (also requires a declaration.d.ts with "declare modules '*.scss';" in it to tell TypeScript that "import styles from './styles.scss';" means to load the module "./styles.scss.d.td")
+          { loader: "css-loader", options: { modules: true } }, // to convert the resulting CSS to Javascript to be bundled (modules:true to rename CSS classes in output to cryptic identifiers, except if wrapped in a :global(...) pseudo class)
+          { loader: "sass-loader" }, // to convert SASS to CSS
+          // NOTE: The first build after adding/removing/renaming CSS classes fails, since the newly generated .d.ts typescript module is picked up only later
+        ],
+      },
     ],
-  },
-
-  // When importing a module whose path matches one of the following, just
-  // assume a corresponding global variable exists and use that instead.
-  // This is important because it allows us to avoid bundling all of our
-  // dependencies, which allows browsers to cache those libraries between builds.
-  externals: {
-    react: "React",
-    "react-dom": "ReactDOM",
   },
 };
