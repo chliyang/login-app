@@ -15,8 +15,14 @@
   "plugins": ["react", "@typescript-eslint"],
   "rules": {
     "quotes": [0, "double"],
-    "array-bracket-spacing": ["error", "always"],
-    "object-curly-spacing": ["error", "always"],
+    "object-curly-spacing": [
+      "error",
+      "always",
+      { "arraysInObjects": false },
+      { "objectsInObjects": false }
+    ],
+    "array-bracket-spacing": ["error", "never"],
+
     "indent": ["error", 2],
     "comma-dangle": [
       "error",
