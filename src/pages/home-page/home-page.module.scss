@@ -1,0 +1,19 @@
+.container {
+  width: 800px;
+  min-height: 100%;
+  margin-left: auto;
+  margin-right: auto;
+  position: relative;
+
+  .header{
+    margin-top: 40px;
+    text-align: center;
+    font-size: 90px;
+    color:deepskyblue
+  }
+
+  .bottom{
+    position: absolute;
+    top: 50%;
+  }
+}
