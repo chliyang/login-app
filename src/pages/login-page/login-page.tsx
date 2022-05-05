@@ -25,7 +25,6 @@ const LoginPage = (props: any) => {
         setLoading("登录成功");
       })
       .then(() => {
-        console.log("hsheifhis");
         history.push("/home");
         // TODO: 应当自动刷新
         window.location.reload();

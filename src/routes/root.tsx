@@ -6,9 +6,10 @@ import {
   Switch
 } from "react-router-dom";
 import React from "react";
-import HomePage from "../pages/home-page/home-page";
 import LoginPage from "../pages/login-page/login-page";
 import { isAuthenticated } from "../utils/session";
+import PrivateRoute from "./private-route";
+import RouteContainer from "./route-container";
 
 const Root = (props: any) => {
   return (
@@ -26,7 +27,7 @@ const Root = (props: any) => {
               );
             }}
           />
-          <Route path="/home" component={HomePage} />
+          <PrivateRoute path="/" component={RouteContainer} />
         </Switch>
       </Router>
     </Suspense>
