@@ -1,13 +1,13 @@
 import { Suspense } from "react";
 import {
-  BrowserRouter as Router,
   Redirect,
   Route,
+  BrowserRouter as Router,
   Switch
 } from "react-router-dom";
 import React from "react";
 import HomePage from "../pages/home-page/home-page";
-import LoginPage from "../pages/login-page";
+import LoginPage from "../pages/login-page/login-page";
 import { isAuthenticated } from "../utils/session";
 
 const Root = (props: any) => {
@@ -19,10 +19,14 @@ const Root = (props: any) => {
             path="/login"
             exact
             render={() => {
-              return !!isAuthenticated() ? <Redirect to="/" /> : <LoginPage />;
+              return !!isAuthenticated() ? (
+                <Redirect to="/home" />
+              ) : (
+                <LoginPage />
+              );
             }}
           />
-          <Route path="/" component={HomePage} />
+          <Route path="/home" component={HomePage} />
         </Switch>
       </Router>
     </Suspense>
