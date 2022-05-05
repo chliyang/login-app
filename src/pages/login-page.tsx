@@ -45,7 +45,7 @@ const LoginPage = () => {
             <Checkbox>记住密码</Checkbox>
           </Form.Item>
           <a className={styles.forgot} href="">
-             忘记密码？
+            忘记密码？
           </a>
         </Form.Item>
         <Form.Item>
