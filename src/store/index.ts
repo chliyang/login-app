@@ -36,7 +36,16 @@ const login = (
   }
 };
 
-const reducer = combineReducers({ login });
+const register = (state={}, action: ActionType) => {
+  switch (action.type) {
+  case "REGISTER_FAIL":
+    return { ...action.payload };
+  default:
+    return null;
+  }
+};
+
+const reducer = combineReducers({ login, register });
 
 const store = createStore(reducer, applyMiddleware(logger));
 

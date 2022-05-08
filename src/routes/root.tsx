@@ -10,12 +10,14 @@ import LoginPage from "../pages/login-page/login-page";
 import { isAuthenticated } from "../utils/session";
 import PrivateRoute from "./private-route";
 import RouteContainer from "./route-container";
+import RegisterPage from "../pages/register-page/register-page";
 
 const Root = (props: any) => {
   return (
     <Suspense fallback={<div>loading...</div>}>
       <Router basename={"example"}>
         <Switch>
+          <Route path="/register" component={RegisterPage} />
           <Route
             path="/login"
             exact
