@@ -84,7 +84,7 @@ const LoginPage = (props: any) => {
           >
             登录
           </Button>
-          或者 <a href="">立即注册!</a>
+          或者 <a href="/register">立即注册!</a>
         </Form.Item>
         <div>{loading}</div>
       </Form>
